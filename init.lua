@@ -1,6 +1,15 @@
+
+
 require "user.options"
 require "user.keymaps"
+if (not vim.g.vscode) then
+  
 require "user.plugins"
+else
+vim.cmd('source ~/.config/nvim/settings.vim')
+  -- require 'user.vscode'
+  -- vim.cmd('./vscode/settings.vim')
+end
 require "user.autocommands"
 require "user.colorscheme"
 require "user.cmp"
