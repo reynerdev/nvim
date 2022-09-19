@@ -4,7 +4,7 @@ if not status_ok then
   print("inlay-hints not found")
 end
 
-inlay_hints.setup()
+-- inlay_hints.setup()
 
 -- inlay_hints.setup {
 --   -- renderer to use

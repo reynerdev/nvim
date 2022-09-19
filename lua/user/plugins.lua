@@ -76,7 +76,7 @@ return packer.startup(function(use)
   }
   use "RRethy/vim-illuminate"
   use "j-hui/fidget.nvim"
-  use "lvimuser/lsp-inlayhints.nvim"
+  -- use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
@@ -132,6 +132,19 @@ run = "./install.sh" }
   -- Colorschemes
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
+  use "reynerdev/colorscheme"
+  use { "catppuccin/nvim", as = 'catppuccin'}
+  -- use { "catppuccin/nvim", as = 'catppuccin',
+  --   config = function()
+  --     local catppuccin = require 'catppuccin'
+  --     catppuccin.setup({
+  --       styles = {
+  --         comments = "NONE",
+  --         functions = "italic"
+  --       }
+  --     })
+  --   end,
+  -- }
   -- use "folke/tokyonight.nvim"
   -- use "lunarvim/colorschemes"
 
@@ -203,6 +216,9 @@ run = "./install.sh" }
   use "ruifm/gitlinker.nvim"
   use "mattn/vim-gist"
   use "mattn/webapi-vim"
+  use {'akinsho/git-conflict.nvim', tag = "*", config = function()
+  require('git-conflict').setup()
+  end}
 
   -- Github
   use "pwntester/octo.nvim"

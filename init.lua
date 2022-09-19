@@ -56,5 +56,5 @@ require "user.auto-session"
 require "user.jaq"
 require "user.surround"
 require "user.harpoon"
-require "user.lab"
+require "user.lab" -- run inline
 require "user.vim-slash"
