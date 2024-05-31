@@ -5,7 +5,16 @@ require "split"
 local M = {}
 
 local config = require "user.bfs.config"
-local keymaps = require("user.bfs.keymaps")
+local keymaps = require "user.bfs.keymaps"
+
+-- if vim.fn.exist("g:neovide") then
+if vim.g.neovide then
+  vim.opt.guifont = "DankMono Nerd Font:h18"
+--   vim.cmd [[
+-- " set guifont=DankMono Nerd Font\ Kalki,agave\ NF\ r:h16
+-- " set guifont=DankMono Nerd Font
+-- ]]
+end
 
 M.bopen = {}
 
@@ -137,20 +146,14 @@ M.set_buffers = function(buf)
       end
     end
 
-    local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(
-      filename,
-      extension,
-      { default = true }
-    )
+    local file_icon, file_icon_color =
+      require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     -- TODO: refactor this
     if filename:split(" ", true)[1] == "Terminal:" then
       hl_group = hl_group .. "term"
-      file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(
-        "terminal",
-        extension,
-        { default = true }
-      )
+      file_icon, file_icon_color =
+        require("nvim-web-devicons").get_icon_color("terminal", extension, { default = true })
     end
 
     vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })

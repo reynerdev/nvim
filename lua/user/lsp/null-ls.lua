@@ -13,22 +13,29 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
   debug = false,
   sources = {
-    formatting.prettier.with {
-      extra_filetypes = { "toml", "solidity" },
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-    },
+    -- formatting.prettier.with {
+    --   extra_filetypes = { "toml", "solidity" },
+    --   -- extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+    -- },
+    formatting.prettier,
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
+    formatting.fixjson,
     formatting.shfmt,
+    formatting.eslint,
     formatting.google_java_format,
+    formatting.prismaFmt.with {
+      command = "node_modules/@prisma/engines/prisma-fmt-darwin-arm64",
+    },
     -- diagnostics.flake8,
     diagnostics.shellcheck,
+    diagnostics.eslint,
   },
 }
 
 local unwrap = {
   method = null_ls.methods.DIAGNOSTICS,
-  filetypes = { "rust" },
+  filetypes = { "rust", "typescript", "javascript", "javascriptreact", "prisma" },
   generator = {
     fn = function(params)
       local diagnostics = {}
@@ -44,7 +51,7 @@ local unwrap = {
             col = col,
             end_col = end_col,
             source = "unwrap",
-            message = "hey " .. os.getenv("USER") .. ", don't forget to handle this" ,
+            message = "hey " .. os.getenv "USER" .. ", don't forget to handle this",
             severity = 2,
           })
         end

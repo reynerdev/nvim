@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim"
+  use "kdheepak/lazygit.nvim"
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
@@ -90,8 +91,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
-  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", 
-run = "./install.sh" }
+  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
 
   -- Snippet
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -99,7 +99,17 @@ run = "./install.sh" }
 
   -- Syntax/Treesitter
   use "nvim-treesitter/nvim-treesitter"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    -- config = function()
+    --   require("nvim-treesitter.configs").setup {
+    --     context_commentstring = {
+    --       enable = true,
+    --       enable_autocmd = false,
+    --     },
+    --   }
+    -- end,
+  }
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
@@ -132,8 +142,22 @@ run = "./install.sh" }
   -- Colorschemes
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
+  use "lunarvim/lunar.nvim"
   use "reynerdev/colorscheme"
-  use { "catppuccin/nvim", as = 'catppuccin'}
+  use "shaunsingh/moonlight.nvim"
+  use {
+    "lunarvim/tokyonight.nvim",
+    config = function()
+      require("tokyonight").setup {
+        on_colors = function(colors)
+          colors.fg = "#fcfcf9"
+        end,
+      }
+    end,
+  }
+  use { "mangeshrex/everblush.vim" }
+  use "bluz71/vim-nightfly-guicolors"
+  use { "catppuccin/nvim", as = "catppuccin" }
   -- use { "catppuccin/nvim", as = 'catppuccin',
   --   config = function()
   --     local catppuccin = require 'catppuccin'
@@ -216,9 +240,15 @@ run = "./install.sh" }
   use "ruifm/gitlinker.nvim"
   use "mattn/vim-gist"
   use "mattn/webapi-vim"
-  use {'akinsho/git-conflict.nvim', tag = "*", config = function()
-  require('git-conflict').setup()
-  end}
+  use {
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+    config = function()
+      require("git-conflict").setup()
+    end,
+  }
+
+  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 
   -- Github
   use "pwntester/octo.nvim"
@@ -227,11 +257,12 @@ run = "./install.sh" }
   use "windwp/nvim-autopairs"
   use "monaqa/dial.nvim"
   use "nacro90/numb.nvim"
-  use "andymass/vim-matchup"
+  -- use "andymass/vim-matchup"
   use "folke/zen-mode.nvim"
   -- use "Pocco81/true-zen.nvim"
   use "karb94/neoscroll.nvim"
   use "junegunn/vim-slash"
+  use "mg979/vim-visual-multi"
 
   -- Motion
   use "phaazon/hop.nvim"
@@ -256,6 +287,10 @@ run = "./install.sh" }
     run = "cd app && npm install",
     ft = "markdown",
   }
+
+  -- wakatime
+  use 'wakatime/vim-wakatime'
+
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"

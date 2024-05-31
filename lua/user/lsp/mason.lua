@@ -16,7 +16,6 @@ local servers = {
   "jdtls",
   "jsonls",
   "solc",
-  "solidity_ls",
   "sumneko_lua",
   "tflint",
   "terraformls",
@@ -24,11 +23,12 @@ local servers = {
   "pyright",
   "yamlls",
   "bashls",
+  "prismals",
   "clangd",
   "rust_analyzer",
   "taplo",
   "zk@v0.10.1",
-  "lemminx"
+  "lemminx",
 }
 
 local settings = {
